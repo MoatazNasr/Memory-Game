@@ -1,13 +1,84 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Shalimar&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root{
+  --gradient: 
+    linear-gradient(45deg, #3e6787, #f4f4bda8, #b48b8b,#3e6787);
+  --gradient2:
+    linear-gradient(45deg,#00416A,#488288,#E4E5E6 );
+
+}
+.BTNS{
+    @apply text-4xl font-black bg-gray-500 mx-3 hover:shadow-lg cursor-pointer ;
+}
+/* @apply used to make utility classes  */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+body{
+    background-image: var(--gradient);
+    background-position: left;
+    background-size: 400%;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    animation: bg-animation 3s ease-in-out  infinite alternate;
 }
+@keyframes bg-animation {
+    0%{
+        background-position:left ;
+    }
+    
+    50% {
+        background-position: center;
+    }
+    100%{
+        background-position: right ;
+    }
+}
+
+.title{
+  background-image: var(--gradient2);
+  background-position: left;
+  background-size: 400%;
+  background-repeat: no-repeat;
+  text-align: center;
+  background-clip: text;
+  color: transparent;
+  animation: bg-animation 3s ease-in-out  infinite alternate;
+}
+
+.back{
+  transition-delay: 0.3s;
+  transition: all ease-in-out 0.3s ;
+}
+.flipped .back{
+  transform:rotateY(90deg);
+  transition-delay: 0s;
+}
+.front{
+  position: absolute;
+  transform:rotateY(90deg);
+  transition-delay: 0s;
+  transition: all ease-in-out 0.3s ;
+}
+.flipped .front{
+  transform: rotateY(0deg);
+  transition-delay: 0.3s;
+}
+
+
