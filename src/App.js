@@ -21,21 +21,22 @@ function App() {
   const [interval, setint] = useState(0);
 
   useEffect(() => {
+    const compare = () => {
+      if (choiceOne.src === choiceTwo.src) {
+        setCards(() =>
+          cards.map((card) => {
+            if (card.src === choiceOne.src) {
+              setWin(win + 2);
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          })
+        );
+      }
+    };
     if (choiceOne && choiceTwo) {
-       const compare = () => {
-    if (choiceOne.src === choiceTwo.src) {
-      setCards(() =>
-        cards.map((card) => {
-          if (card.src === choiceOne.src) {
-            setWin(win + 2);
-            return { ...card, matched: true };
-          } else {
-            return card;
-          }
-        })
-      );
-    }
-  };
+      compare();
       setTimeout(() => reset(), 1000);
     }
   }, [choiceTwo, choiceOne]);
