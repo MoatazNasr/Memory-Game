@@ -22,10 +22,23 @@ function App() {
 
   useEffect(() => {
     if (choiceOne && choiceTwo) {
-      compare();
+       const compare = () => {
+    if (choiceOne.src === choiceTwo.src) {
+      setCards(() =>
+        cards.map((card) => {
+          if (card.src === choiceOne.src) {
+            setWin(win + 2);
+            return { ...card, matched: true };
+          } else {
+            return card;
+          }
+        })
+      );
+    }
+  };
       setTimeout(() => reset(), 1000);
     }
-  }, [choiceTwo, choiceOne,compare]);
+  }, [choiceTwo, choiceOne]);
 
   useEffect(() => {
     if (win === 12 || time >= 60) {
@@ -58,21 +71,7 @@ function App() {
   const handleChoice = (card) => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   };
-
-  const compare = () => {
-    if (choiceOne.src === choiceTwo.src) {
-      setCards(() =>
-        cards.map((card) => {
-          if (card.src === choiceOne.src) {
-            setWin(win + 2);
-            return { ...card, matched: true };
-          } else {
-            return card;
-          }
-        })
-      );
-    }
-  };
+  
   const reset = () => {
     setChoiceOne(null);
     setChoiceTwo(null);
