@@ -25,7 +25,7 @@ function App() {
       compare();
       setTimeout(() => reset(), 1000);
     }
-  }, [choiceTwo, choiceOne]);
+  }, [choiceTwo, choiceOne,compare]);
 
   useEffect(() => {
     if (win === 12 || time >= 60) {
